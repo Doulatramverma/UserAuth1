@@ -1,0 +1,5 @@
+<select id="company_city_id" name="company[city_id]"><option value="">Select city</option>
+<% @cities.each do |city| %>
+   <option value="<%= city.id%>"><%= city.city_name%></option>
+<%end%>
+</select>

@@ -1,0 +1,117 @@
+<%= form_for company,:html=>{:class=>"form-horizontal"} do |f| %>
+  <% if company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+  <div class="form-group">
+        <label class="col-md-4 control-label">Name</label>
+        <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <%= f.text_field :name, :placeholder=>"Name", :class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Country</label>
+        <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+           <%=f.select(:country_id, Country.all.collect {|u| [u.country_name, u.id]},:prompt => "Select Country", :class=>"form-control") %>
+          </div>
+        </div>
+      </div>
+
+     <div class="form-group">
+        <label class="col-md-4 control-label">State</label>
+      <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+          <div class="statecontainer">
+       <%=f.select(:state_id, State.all.collect {|u| [u.state_name, u.id]},:prompt => "Select state", :class=>"form-control") %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">City</label>
+      <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+          <div class="citycontainer">
+    <%=f.select(:city_id, City.all.collect {|u| [u.city_name, u.id]},:prompt => "Select City", :class=>"form-control") %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+ <div class="form-group">
+        <label class="col-md-4 control-label">Postcode</label>
+      <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+           <%= f.text_field :postcode , :placeholder=>"postcode", :class=>"form-control" %>
+    
+        </div>
+    </div>
+  </div>
+   <div class="form-group">
+        <label class="col-md-4 control-label">Start_date</label>
+      <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+           <%= f.datetime_select :start_date , :placeholder=>"Start_date", :class=>"form-control" %>
+    
+        </div>
+    </div>
+  </div>
+   
+    <div class="form-group">
+        <label class="col-md-4 control-label">Active</label>
+      <div class="col-md-6  inputGroupContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+           <%= f.check_box :active , :placeholder=>"Start_date", :class=>"form-control" %>
+    
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <%=f.submit :class=>"btn btn-success" %>
+        </div>
+      </div>
+<% end %>
+
+<script>
+$(document).ready(function() {
+$('#company_country_id').change(function(){
+  var country =  $('#company_country_id').val()
+  $.ajax({
+    url: "/get_states",
+    type: "GET",
+    data: {country: country},
+  });
+});
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  var country_states_path = '/states/'
+$('#company_state_id').change(function(){
+  var state =  $('#company_state_id').val()
+  $.ajax({
+    url:"/get_states", "/get_cities",
+    type: "GET",
+    data: {state: state},
+  });
+});
+});
+</script>
+

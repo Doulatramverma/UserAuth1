@@ -1,0 +1,5 @@
+<select id="company_state_id" name="company[state_id]"><option value="">Select State</option>
+<% @states.each do |state| %>
+   <option value="<%= state.id%>"><%= state.state_name%></option>
+<%end%>
+</select>
