@@ -21,9 +21,7 @@
   def edit
   end
    
-   def get_cities
-    @cities= City.where(:state_id=>params[:state])
-  end
+  
   # POST /cities
   # POST /cities.json
   def create
@@ -54,6 +52,7 @@
     end
   end
 
+
   # DELETE /cities/1
   # DELETE /cities/1.json
   def destroy
@@ -63,6 +62,11 @@
       format.json { head :no_content }
     end
   end
+  
+  def get_cities
+    @cities= City.where(:state_id=>params[:state])
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
