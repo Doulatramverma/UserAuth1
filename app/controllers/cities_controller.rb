@@ -21,9 +21,7 @@
   def edit
   end
    
-   def get_cities
-    @cities= City.where(:state_id=>params[:state])
-  end
+  
   # POST /cities
   # POST /cities.json
   def create
@@ -62,6 +60,10 @@
       format.html { redirect_to cities_url, notice: 'City was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+   def get_cities
+    @cities= City.where(:state_id=>params[:state])
   end
 
   private

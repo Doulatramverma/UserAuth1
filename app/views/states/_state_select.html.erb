@@ -3,3 +3,16 @@
    <option value="<%= state.id%>"><%= state.state_name%></option>
 <%end%>
 </select>
+<script>
+$(document).ready(function() {
+$('#company_state_id').change(function(){
+  var state =  $('#company_state_id').val()
+  $.ajax({
+    url:"/get_cities",
+    type: "GET",
+    data: {state: state},
+  });
+});
+});
+</script>
+
