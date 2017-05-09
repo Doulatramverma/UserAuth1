@@ -13,9 +13,9 @@ class ManagersController < ApplicationController
   
   def new
     @manager = User.new
-    if params[:start_date].present? 
-      @manager = User.where('created_at > ?', params[:start_date].to_date)  
-    end
+    # if params[:start_date].present? 
+    #   @manager = User.where('created_at > ? AND created_at < ?', params[:start_date].to_date, params[:end_date].to_date) 
+    # end
   end   
   
   def edit
@@ -23,11 +23,15 @@ class ManagersController < ApplicationController
 
  
   def create
-    @manager = User.new(user_params)
-
+    @manager = User.new(manager_params)
+     @manager.password = 12345678
     respond_to do |format|
       if @manager.save
-        format.html { redirect_to @manager, notice: 'Manager was successfully created.' }
+
+     Image.create(:image_name=> params[:user][:image_id], :imageable_id=> @manager.id, :imageable_type=> "User")
+      #@user.images.create(:image_name=> params[:user][:image_id])
+       
+        format.html { redirect_to  managers_path, notice: 'Manager was successfully created.' }
         format.json { render :show, status: :created, location: @manager }
        else
         format.html { render :new }

@@ -1,48 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>managers</h1>
+<h1>Companies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>FirstName</th>
-       <th>Lastname</th>
-      <th>Email</th>
-      <th>Company</th>
-      <th>Role</th>
-      <th>Startdate</th>
-      <th>Enddate</th>
-      <th>MonthlyCharge</th>
-      
-      <th>Notes</th>
-      <th>Image</th>
+      <th>Name</th>
+      <th>Country</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Postcode</th>
+      <th>Start date</th>
       <th>Active</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @managers.each do |manager| %>
+    <% @companies.each do |company| %>
       <tr>
-        <td><%= manager.first_name %></td>
-        <td><%= manager.last_name %></td>
-        <td><%= manager.email %></td>
-        <td><%= manager.company_id %></td>
-        <td><%= manager.role_id %></td>
-        <td><%= manager.start_date %></td>
-        <td><%= manager.end_date %></td>
-        <td><%= manager.monthly_charge %></td>
-        <td><%= manager.notes%></td>
-        <td><%= manager.image_id%></td>
-        <td><%= manager.active %></td>
-        <td><%= link_to 'Show', manager,:class=>"btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_manager_path(manager),:class=>"btn btn-warning" %></td>
-        <td><%= link_to 'Destroy', manager, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+        <td><%= company.name %></td>
+    <td><%= @country= Country.find(company.country_id).country_name %><td>
+        <td><%= @state= State.find(company.state_id).state_name %></td>
+        
+        <td><%= @city= City.find(company.city_id).city_name %></td>
+        <td><%= company.postcode %></td>
+        <td><%= company.start_date %></td>
+        <td><%= company.active %></td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Company', new_manager_path %>
+<%= link_to 'New Company', new_company_path %>

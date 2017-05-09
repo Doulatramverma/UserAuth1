@@ -24,6 +24,9 @@
           <ul class="nav navbar-nav">
             <li class="active"><%=link_to 'Home',companies_path%></li>
              <li><%=link_to 'Admin','admin'%></li>
+             <li><%=link_to 'User Details',managers_path%></li>
+             <li><%=link_to 'Role Details',user_roles_path%></li>
+
 
           <ul class="nav navbar-nav navbar-right">
             <% unless user_signed_in? %>
@@ -34,6 +37,8 @@
             <% end%>
             <li><%=link_to 'Add Company',new_company_path%></li>
             <li><%=link_to 'Add Place',new_place_path%></li>
+            <li><%=link_to 'Add User',new_manager_path%></li>
+            <li><%=link_to 'Add Role',new_user_role_path%></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

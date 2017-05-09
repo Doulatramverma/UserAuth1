@@ -28,11 +28,9 @@
  <div class="form-group">
     <label class="col-sm-1 control-label">Email</label>
     <div class="col-sm-3  inputGroupContainer">
-      <%= f.text_field :email, :class=>"form-control" %>
+      <%= f.text_field :email, :class=>"form-control" %><br>
     </div>
-  </div>
-  <br><br>
-
+  </div><br><br>
 
 
       <div class="form-group">
@@ -45,32 +43,30 @@
         <div class="form-group">
         <label class="col-sm-1 control-label">Monthly</label>
       <div class="col-sm-3  inputGroupContainer">
-       <%= f.text_field :monthly_charge, :class=>"form-control" %>
+       <%= f.text_field :monthly_charge, :class=>"form-control" %><br>
          </div>
-          </div>
+          </div><br><br>
+
  <div class="form-group">
-    <label class="col-ms-1 control-label">Role</label>
-    <div class="col-ms-4  inputGroupContainer">
-        
-     <%= f.text_field :role_id, :class=>"form-control" %><br>
+    <label class="col-sm-1 control-label">Role</label>
+    <div class="col-sm-7  inputGroupContainer">
+        <%=f.select(:role_id, UserRole.all.collect {|u| [u.role_name, u.id]},{},:prompt => "Select Role", :class=>"form-control") %>
     </div>
- </div>
- </div>
+ </div><br><br>
+
 
   <div class="form-group">
-    <label class="col-ms-1 control-label">Start_date</label>
-    <div class="col-ms-2  inputGroupContainer">
-     <%= f.text_field :start_date, :class => 'datepicker' %>
-
-     <%#= f.datetime_select :start_date , :placeholder=>"Start_date", :class=>"form-control" %>
-    
+    <label class="col-sm-1 control-label">Start_date</label>
+    <div class="col-sm-2  inputGroupContainer">
+      <%= f.text_field :start_date, :id=>"datetimepicker1",:class=>"form-control" %>
     </div>
   </div>
   
   <div class="form-group">
-        <label class="col-ms-1 control-label">End_date</label>
-      <div class="col-ms-2  inputGroupContainer">
-          <%= f.text_field :end_date, :class => 'datepicker' %>
+        <label class="col-sm-1 control-label">End_date</label>
+      <div class="col-sm-2  inputGroupContainer">
+
+          <%= f.text_field :end_date, :id=>"datetimepicker2",:class=>"form-control" %>
 
            <%#= f.datetime_select :start_date , :placeholder=>"Start_date", :class=>"form-control" %>
     
@@ -78,34 +74,65 @@
     </div>
    
     <div class="form-group">
-        <label class="col-ms-1 control-label">Active</label>
-      <div class="col-ms-2  inputGroupContainer">
+        <label class="col-sm-1 control-label">Active</label>
+      <div class="col-sm-2  inputGroupContainer">
         
            <%= f.check_box :active , :class=>"form-control" %>
         </div>
-    </div>
+    </div><br><br>
   
   <div class="form-group">
-    <label class="col-ms-1 control-label">Image</label>
-    <div class="col-ms-2  inputGroupContainer">
-     <%= f.text_field :image_id, :class=>"form-control" %>
-    </div>
+    <label class="col-sm-5 control-label">Image</label>
+    <div class="col-sm-4  inputGroupContainer">
+     <%= f.file_field :image_id, :onchange => "showimagepreview(this)",:class=>"img_file" %>
+    <img id="imgprvw" style="width: 167px; height: 94px; margin-top: 8px;" /><br>
   </div>
-  
-      <div class="form-group">
-    <label class="col-ms-1 control-label">Notes</label>
-    <div class="col-ms-12  inputGroupContainer">
+  </div><br><br>
+
+   <div class="form-group">
+    <label class="col-sm-1 control-label">Notes</label>
+    <div class="col-sm-12  inputGroupContainer">
      <%= f.cktext_area :notes, :class=>"form-control" %>
     </div>
-  </div>
+  </div><br><br>
 
+
+  
   <div class="form-group">
-        <label class="col-ms-10 control-label"></label>
-        <div class="col-ms-4">
+        <label class="col-ms-1 control-label"></label>
+        <div class="col-ms-2">
           <%=f.submit :class=>"btn btn-success" %>
         </div>
       </div>
 
+     
   
 <% end %>
 </div>
+
+<script>
+  function showimagepreview(input) {
+    if (input.files && input.files[0]) {
+    var filerdr = new FileReader();
+    filerdr.onload = function(e) {
+
+    $('#imgprvw').attr('src', e.target.result);
+    }
+    filerdr.readAsDataURL(input.files[0]);
+    }
+    $('.image_upload').submit();
+  }
+</script>
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
