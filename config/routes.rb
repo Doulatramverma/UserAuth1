@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :user_roles
   devise_for :users
   resources :companies
+  resources :managers
   root'companies#index'
   get 'get_states' => "states#get_states"
   get 'get_cities' => "cities#get_cities"

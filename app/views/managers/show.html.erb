@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>FirstName:</strong>
+  <%= @manager.first_name %>
+</p>
+
+<p>
+  <strong>LastName:</strong>
+  <%= @manager.last_name %>
+</p>
+
+<p>
+  <strong>company:</strong>
+  <%= @manager.company_id %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @manager.role_id %>
+</p>
+
+<p>
+  <strong>Start_date:</strong>
+  <%= @manager.start_date %>
+</p>
+
+<p>
+  <strong>End_date:</strong>
+  <%= @manager.end_date %>
+</p>
+
+<p>
+  <strong>Monthly_Charge:</strong>
+  <%= @manager.monthly_charge %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @manager.notes%>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @manager.image_id %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @manager.active %>
+</p>
+
+<%= link_to 'Edit', edit_manager_path(@manager) %> |
+<%= link_to 'Back', managers_path %>

@@ -63,10 +63,16 @@
     end
   end
   
+<<<<<<< HEAD
   def get_cities
     @cities= City.where(:state_id=>params[:state])
   end
 
+=======
+   def get_cities
+    @cities= City.where(:state_id=>params[:state])
+  end
+>>>>>>> 63bfc0ad817d34857dcae961592ead6e630d3aa7
 
   private
     # Use callbacks to share common setup or constraints between actions.
