@@ -16,10 +16,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-    if params[:start_date].present? 
-        @compny = Company.where('created_at > ?', params[:start_date].to_date)  
-      
-  end
+    
   end   
   # GET /companies/1/edit
   def edit

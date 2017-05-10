@@ -16,18 +16,16 @@
   </thead>
 
     <% @companies.each do |company| %>
-      <tr>
         <td><%= company.name %></td>
-    <td><%= @country= Country.find(company.country_id).country_name %><td>
-        <td><%= @state= State.find(company.state_id).state_name %></td>
-        
-        <td><%= @city= City.find(company.city_id).city_name %></td>
+         <td><%= company.country_id %></td>
+         <td><%= company.state_id %></td>
+         <td><%= company.city_id %></td>
         <td><%= company.postcode %></td>
-        <td><%= company.start_date %></td>
-        <td><%= company.active %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td><%= company.start_date %></td>
+         <td><%= company.active %></td>
+         <td><%= link_to 'Show', company,:class=>"btn btn-info" %></td>
+         <td><%= link_to 'Edit', edit_company_path(company),:class=>"btn btn-warning" %></td>
+         <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
 </table>

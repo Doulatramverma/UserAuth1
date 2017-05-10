@@ -1,88 +1,89 @@
+<div class="container"
+ <%= form_for company,:html=>{:class=>"form-horizontal"} do |f| %>
+   <% if company.errors.any? %>
+     <div id="error_explanation">
+       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
-<%= form_for(company ,:class=>"form-horizontal")  do |f| %>
-<div class="container">
-  <% if company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-      <% company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-            <%= f.label :name,:class=>"col-sm-1 control-label"  %>
-          <div class="col-sm-5 inputGroupContainer">
-             <%= f.text_field :name,:class=>"form-control" %>
-          </div>
-      </div>
-     <br><br>
-    <div class="form-group">
-            <%= f.label :CountryName,:class=>"col-sm-1 control-label" %>
-           <div class="col-sm-2  inputGroupContainer">
-       <%= f.select(:country_id, Country.all.collect {|u| [u.country_name, u.id]},:prompt => 'Select Country',:class=>"form-control" ) %>
-       </div>
-      </div>
-
-      <div class="form-group">
-          <%= f.label :StateName,:class=>"col-sm-1 control-label"  %>
-           <div class="col-sm-2  inputGroupContainer">
-         <div class="statecontainer">
-           <%= f.select(:state_id, State.all.collect {|u| [u.state_name, u.id]},:prompt => 'Select State',:class=>"form-control") %>
-        </div>
-        </div>
+       <ul>
+         <% company.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
      </div>
-
+   <% end %>
+  
 
     <div class="form-group">
-          <%= f.label :CityName ,:class=>"col-sm-1"%>
-           <div class="col-sm-2  inputGroupContainer">
-          <div class="citycontainer">
-               <%= f.select(:city_id, City.all.collect {|u| [u.city_name, u.id]},:prompt => 'Select City',:class=>"form-control") %>
-          </div>
-       </div>
-  </div>
- <br><br><br>
+      <label class="col-sm-1 control-label">Name</label>
+      <div class="col-sm-6  inputGroupContainer">
+        
+       <%= f.text_field :name, :placeholder=>"Name", :class=>"form-control" %>
+      </div>
+    </div><br><br><br>
 
-         <div class="form-group">
-              <%= f.label :postcode,:class=>"col-sm-1" %>
-               <div class="col-sm-2  inputGroupContainer">
-                   <%= f.text_field :postcode %>
-               </div>
-        <div>
-               <div class="form-group">
-               <%= f.label :start_date,:class=>"col-sm-2 control-label" %>
-                <div class="col-sm-2  inputGroupContainer">
-                <%= f.text_field :start_date, :id=>"datetimepicker1",:class=>"form-control" %>
-                <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-            </script>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Country</label>
+      <div class="col-sm-3  inputGroupContainer">
+        <%=f.select(:country_id, Country.all.collect {|u| [u.country_name, u.id]},{},:prompt => "Select Country", :class=>"form-control") %>
+      </div>
+    </div>
 
+    <div class="form-group">
+      <label class="col-sm-1 control-label">State</label>
+      <div class="col-sm-3  inputGroupContainer">
+       <div class="statecontainer">
+         <%=f.select(:state_id, State.all.collect {|u| [u.state_name, u.id]},{},:prompt => "Select state", :class=>"form-control") %>
+        </div>
+      </div>
+    </div>
+        
+    <div class="form-group">
+     <label class="col-sm-1 control-label">City</label>
+      <div class="col-sm-3  inputGroupContainer">
+       <div class="citycontainer">
+         <%=f.select(:city_id, City.all.collect {|u| [u.city_name, u.id]},{},:prompt => "Select City", :class=>"form-control") %><br>
+        </div>
+      </div>
+    </div><br>
+  
 
- <div class="form-group">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
-  </div>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Postcode</label>
+      <div class="col-sm-3  inputGroupContainer">
+       <%= f.text_field :postcode , :placeholder=>"postcode", :class=>"form-control" %>
+      </div>
+    </div><br><br>
 
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+   <div class="form-group">
+      <label class="col-sm-1 control-label">Start_date</label>
+      <div class="col-sm-3  inputGroupContainer">
+        <%= f.text_field :start_date, :id=>"datetimepicker1",:class=>"form-control" %>
+      </div>
+    </div>
+   
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Active</label>
+      <div class="col-sm-1  inputGroupContainer">
+       <%= f.check_box :active , :class=>"form-control" %><br>
+      </div>
+    </div><br><br><br>
+  
+   <div class="form-group">
+      <label class="col-md-7 control-label"></label>
+      <div class="col-md-4">
+        <%=f.submit :class=>"btn btn-success" %>
+      </div>
+    </div><br><br>
+  <% end %>
 </div>
+
 
 <script>
 $(document).ready(function() {
 $('#company_country_id').change(function(){
   var country =  $('#company_country_id').val()
-
   $.ajax({
-    url: "/states/get_states",
+    url: "/get_states",
     type: "GET",
     data: {country: country},
   });
@@ -91,5 +92,10 @@ $('#company_country_id').change(function(){
 </script>
 
 
+ <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+            </script>
 
 
