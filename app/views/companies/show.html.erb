@@ -8,6 +8,9 @@
 <p>
   <strong>Country:</strong>
   <%= @company.country_id %>
+  <%if @company.country_id.present? %> 
+  <%= Country.find(@company.country_id).first_name %> 
+    <% end %> 
 </p>
 
 <p>

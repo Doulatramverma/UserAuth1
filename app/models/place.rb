@@ -1,3 +1,4 @@
 class Place < ApplicationRecord
-	blongs_to :nodes
+	has_one :node
+	attr_accessor :node_name
 end

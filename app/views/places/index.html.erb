@@ -2,7 +2,7 @@
 
 <h1>Places</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Place name</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= place.place_name %></td>
         <td><%= place.company_id %></td>
-        <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', place,:class=>"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_place_path(place),:class=>"btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Place', new_place_path %>
+<%= link_to 'New Place', new_place_path,:class=>"btn btn-success" %>

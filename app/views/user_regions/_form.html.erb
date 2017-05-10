@@ -1,4 +1,5 @@
-<%= form_for user_region,:html=>{:class=>"form-horizontal"} do |f| %>
+ <div class="Container">
+<%= form_for user_region do |f| %>
   <% if user_region.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user_region.errors.count, "error") %> prohibited this user_region from being saved:</h2>
@@ -14,34 +15,59 @@
 
   <div class="form-group">
         <label class="col-sm-2 control-label">Name</label>
-        <div class="col-sm-6  inputGroupContainer">
+        <div class="col-sm-3  inputGroupContainer">
         <%=f.select(:user_id, User.all.collect {|u| [u.first_name, u.id]},{},:prompt => "Select User",:class=>"form-control") %>
         
           </div>
-        </div>
+        </div><br><br><br><br>
 
       <div class="form-group">
         <label class="col-sm-2 control-label">Region</label>
-        <div class="col-sm-2  inputGroupContainer">
-            <%=f.select(:region_id, Region.all.collect {|u| [u.region_name, u.id]},{},:prompt => "Select Region",:class=>"form-control",:multiple=>true) %>
-       </div>
-       </div>
-       
-       <div class="form-group">
-        <label class="col-sm-2 control-label"></label>
         <div class="col-sm-3  inputGroupContainer">
-            <%=text_area,"xyz",:size=>"5x4" %>
+        <%= f.select(:region_id, Region.find(Region.ids - UserRegion.all.map(&:region_id).uniq).collect {|u| [u.region_name, u.id]},{},:prompt => 'Select Region',:class=>"form-control") %>  
+
        </div>
        </div>
+      
+       <div class="form-group">
+              <label class="col-sm-1 control-label"></label>
+              <div class="col-sm-1  inputGroupContainer">
+           <%=link_to 'add',:id=>'xyz'%>
+            </div>
+        </div>
 
 
+             <div class="form-group">
+              <label class="col-sm-1 control-label"></label>
+              <div class="col-sm-1  inputGroupContainer">
+           <%=link_to 'remove',:id=>'xyz1'%>
+            </div>
+        </div> 
+
+       <div class="form-group">
+        <label class="col-sm-1 control-label"></label>
+        <div class="col-sm-2  inputGroupContainer">
+       <%#= f.text_area :text, value: "aaa", :size => "20x5" %>
+       <ul>
+        <% UserRegion.all.each do  |region| %>
+         <% if region.right == "true" %>
+         <li>
+              <%= Region.find(region.region_id).region_name%>
+         </li>
+        <% end %>
+
+        <% end %>
+       </ul>
+  </div>
+  </div> <br><br>
+       
      
   <div class="form-group">
-        <label class="col-md-4 control-label"></label>
-        <div class="col-md-4">
-          <%=f.submit :class=>"btn btn-success" %>
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-2">
+          <%=f.submit "save", :class=>"btn btn-success" %>
         </div>
       </div>
 <% end %>
 
-
+</div>

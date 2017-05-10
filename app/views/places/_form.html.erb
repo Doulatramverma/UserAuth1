@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :node_name %>
+    <%= f.text_field :node_name %>
+  </div>
+
+  <div class="field">
     <%= f.label :company_id %>
     <%=f.select(:company_id, Company.all.collect {|u| [u.name, u.id]},:prompt => "Select Company") %>
   </div>
