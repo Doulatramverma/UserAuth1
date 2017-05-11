@@ -26,6 +26,7 @@ class UserRegionsController < ApplicationController
   def create
     @user_region = UserRegion.new(user_region_params)
         @user_region.right="true"
+        @user_region.left="true"
     respond_to do |format|
       if @user_region.save
         format.html { redirect_to @user_region, notice: 'User region was successfully created.' }

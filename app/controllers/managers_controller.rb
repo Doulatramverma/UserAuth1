@@ -43,8 +43,8 @@ class ManagersController < ApplicationController
   
   def update
     respond_to do |format|
-      if @manager.update(user_params)
-        format.html { redirect_to @manager, notice: 'Manager was successfully updated.' }
+      if @manager.update(manager_params)
+        format.html { redirect_to managers_path, notice: 'Manager was successfully updated.' }
         format.json { render :show, status: :ok, location: @manager }
        else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ManagersController < ApplicationController
   def destroy
     @manager.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Manager was successfully destroyed.' }
+      format.html { redirect_to managers_path, notice: 'Manager was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -46,7 +46,9 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @manager.image_id %>
+  <%if @manager.image_id.present? %> 
+  <%= Image.find(@manager.image_id).image_name %> 
+    <% end %> 
 </p>
 
 <p>

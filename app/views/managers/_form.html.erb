@@ -1,5 +1,11 @@
 <div class="container">
-<%= form_for @manager ,url:managers_path do |f| %>
+
+<%if @manager.id.present?%>
+ <% path = "/managers/#{@manager.id}"%> 
+ <% else %> 
+ <% path = managers_path%> 
+ <% end %> 
+ <%= form_for(@manager, url: path ) do |f| %>
   <% if manager.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(manager.errors.count, "error") %> prohibited this manager from being saved:</h2>
@@ -83,15 +89,15 @@
   
   <div class="form-group">
     <label class="col-sm-5 control-label">Image</label>
-    <div class="col-sm-4  inputGroupContainer">
+    <div class="col-sm-7  inputGroupContainer">
      <%= f.file_field :image_id, :onchange => "showimagepreview(this)",:class=>"img_file" %>
     <img id="imgprvw" style="width: 167px; height: 94px; margin-top: 8px;" /><br>
   </div>
-  </div><br><br>
+  </div><br><br><br><br><br>
 
    <div class="form-group">
     <label class="col-sm-1 control-label">Notes</label>
-    <div class="col-sm-12  inputGroupContainer">
+    <div class="col-sm-11  inputGroupContainer">
      <%= f.cktext_area :notes, :class=>"form-control" %>
     </div>
   </div><br><br>

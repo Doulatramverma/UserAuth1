@@ -2,7 +2,7 @@
 
 <h1>User Roles</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Role name</th>
@@ -14,9 +14,9 @@
     <% @user_roles.each do |user_role| %>
       <tr>
         <td><%= user_role.role_name %></td>
-        <td><%= link_to 'Show', user_role %></td>
-        <td><%= link_to 'Edit', edit_user_role_path(user_role) %></td>
-        <td><%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_role,:class=>"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_user_role_path(user_role),:class=>"btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New User Role', new_user_role_path %>
+<%= link_to 'New User Role', new_user_role_path,:class=>"btn btn-success" %>
