@@ -15,11 +15,17 @@
     </tr>
   </thead>
 
-    <% @companies.each do |company| %>
+  <% @companies.each do |company| %>
         <td><%= company.name %></td>
-         <td><%= company.country_id %></td>
-         <td><%= company.state_id %></td>
-         <td><%= company.city_id %></td>
+         <td><%if company.country_id.present? %> 
+          <%= Country.find(company.country_id).country_name %> 
+           <% end %> </td>
+         <td><%if company.state_id.present? %> 
+        <%= State.find(company.state_id).state_name %> 
+    <% end %> </td>
+         <td> <%if company.city_id.present? %> 
+     <%= City.find(company.city_id).city_name %> 
+    <% end %> </td>
         <td><%= company.postcode %></td>
          <td><%= company.start_date %></td>
          <td><%= company.active %></td>

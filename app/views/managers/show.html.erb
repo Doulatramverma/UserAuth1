@@ -12,12 +12,16 @@
 
 <p>
   <strong>company:</strong>
-  <%= @manager.company_id %>
+  <%if @manager.company_id.present? %> 
+  <%= Company.find(@manager.company_id).name %> 
+    <% end %> 
 </p>
 
 <p>
   <strong>Role:</strong>
-  <%= @manager.role_id %>
+  <%if @manager.role_id.present? %> 
+  <%= UserRole.find(@manager.role_id).role_name %> 
+    <% end %> 
 </p>
 
 <p>

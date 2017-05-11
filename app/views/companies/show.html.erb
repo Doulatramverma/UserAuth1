@@ -7,20 +7,23 @@
 
 <p>
   <strong>Country:</strong>
-  <%= @company.country_id %>
   <%if @company.country_id.present? %> 
-  <%= Country.find(@company.country_id).first_name %> 
+  <%= Country.find(@company.country_id).country_name %> 
     <% end %> 
 </p>
 
 <p>
   <strong>State:</strong>
-  <%= @company.state_id %>
+<%if @company.state_id.present? %> 
+  <%= State.find(@company.state_id).state_name %> 
+    <% end %> 
 </p>
 
 <p>
   <strong>City:</strong>
-  <%= @company.city_id %>
+  <%if @company.city_id.present? %> 
+  <%= City.find(@company.city_id).city_name %> 
+    <% end %> 
 </p>
 
 <p>

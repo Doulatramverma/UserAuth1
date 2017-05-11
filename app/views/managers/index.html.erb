@@ -27,8 +27,12 @@
         <td><%= manager.first_name %></td>
         <td><%= manager.last_name %></td>
         <td><%= manager.email %></td>
-        <td><%= manager.company_id %></td>
-        <td><%= manager.role_id %></td>
+        <td><%if manager.company_id.present? %> 
+  <%= Company.find(manager.company_id).name %> 
+    <% end %></td>
+        <td><%if manager.role_id.present? %> 
+  <%= UserRole.find(manager.role_id).role_name %> 
+    <% end %></td>
         <td><%= manager.start_date %></td>
         <td><%= manager.end_date %></td>
         <td><%= manager.monthly_charge %></td>
