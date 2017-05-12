@@ -7,5 +7,9 @@ default: &default
 
 development:
   <<: *default
-  database: blog111
+  database: blog1s
+
+production:
+  <<: *default
+  database: blog1s
 
