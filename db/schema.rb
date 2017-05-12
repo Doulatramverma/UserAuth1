@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510074239) do
+ActiveRecord::Schema.define(version: 20170512063054) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20170510074239) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.decimal  "monthly_charge",                       precision: 10
-    t.binary   "notes",                  limit: 65535
+    t.text     "notes",                  limit: 65535
     t.integer  "image_id"
     t.boolean  "active"
     t.string   "image"
