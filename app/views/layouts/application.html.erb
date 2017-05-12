@@ -18,15 +18,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">UserAuth1</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
             <li class="active"><%=link_to 'Home',companies_path%></li>
-             <li><%=link_to 'Admin','admin'%></li>
+             <li><%#=link_to 'Admin','admin'%></li>
+             <li><%=link_to 'country',new_country_path%></li>
+             <li><%=link_to 'State',new_state_path%></li>
+             <li><%=link_to 'city',new_city_path%></li>
              <li><%=link_to 'User Details',managers_path%></li>
-             <li><%=link_to 'Role Details',user_roles_path%></li>
-
+             
 
           <ul class="nav navbar-nav navbar-right">
             <% unless user_signed_in? %>
@@ -40,6 +42,8 @@
             <li><%=link_to 'Add User',new_manager_path%></li>
             <li><%=link_to 'Add Role',new_user_role_path%></li>
             <li><%=link_to 'User to Region',new_user_region_path%></li>
+            <li><%=link_to 'Role Details',user_roles_path%></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>

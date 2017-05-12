@@ -1,27 +1,43 @@
-<%= form_for(country) do |f| %>
+
+<%= form_for country,:html=>{:class=>"form-horizontal"} do |f| %>
   <% if country.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
 
       <ul>
-      <% country.errors.full_messages.each do |message| %>
+      <% countey.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+  
 
-  <div class="field">
-    <%= f.label :country_name %>
-    <%= f.text_field :country_name %>
-  </div>
+  <div class="form-group">
+        <label class="col-md-4 control-label">CountryName</label>
+        <div class="col-md-6  inputGroupContainer">
+        
+            <%= f.text_field :country_name, :placeholder=>"City_Name", :class=>"form-control" %>
+          </div>
+        </div>
+      
 
-  <div class="field">
-    <%= f.label :country_code %>
-    <%= f.text_field :country_code %>
+      <div class="form-group">
+        <label class="col-md-4 control-label">CountryCode</label>
+        <div class="col-md-6  inputGroupContainer">
+          
+            <%= f.text_field :country_code, :placeholder=>"City_Name", :class=>"form-control" %>
+          </div>
+        </div><br><br>
+      
+     
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <%=f.submit :class=>"btn btn-success" %>
+        </div>
+      </div>
 <% end %>
+
+

@@ -1,28 +1,40 @@
-<%= form_for(state) do |f| %>
-  <% if state.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(state.errors.count, "error") %> prohibited this state from being saved:</h2>
+<div class="Container">
+ <%= form_for state do |f| %>
+  
+   <% if state.errors.any? %>
+     <div id="error_explanation">
+       <h2><%= pluralize(state.errors.count, "error") %> prohibited this state from being saved:</h2>
 
-      <ul>
-      <% state.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+       <ul>
+         <% state.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+     </div>
+   <% end %>
+  
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">State_Name</label>
+      <div class="col-sm-6  inputGroupContainer">
+        
+       <%= f.text_field :state_name, :placeholder=>"StateName", :class=>"form-control" %>
+      </div>
+    </div><br><br><br>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Country</label>
+      <div class="col-sm-3  inputGroupContainer">
+        <%=f.select(:country_id, Country.all.collect {|u| [u.country_name, u.id]},{},:prompt => "Select Country", :class=>"form-control") %>
+      </div>
+    </div><br><br><br>
+
+  
+   <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-3">
+        <%=f.submit :class=>"btn btn-success" %>
+      </div>
+    </div><br><br>
   <% end %>
-
-  <div class="field">
-    <%= f.label :state_name %>
-    <%= f.text_field :state_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country_id %>
-    <%=f.select(:country_id, Country.all.collect {|u| [u.country_name, u.id]},:prompt => "Select Country", :class=>"form-control") %>
-    
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
