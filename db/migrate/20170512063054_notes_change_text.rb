@@ -1,6 +1,7 @@
 class NotesChangeText < ActiveRecord::Migration[5.0]
-	add_column :users, :notes, :text
-    
+	
   def change
+  	add_column :users, :notes, :text
+    
   end
 end
