@@ -1,6 +1,11 @@
-development:
-  adapter: mysql2
-  encoding: utf8
-  database: user_db2
+default: &default
+  adapter: postgresql
+  pool: 5
   username: root
   password: root
+  timeout: 5000
+
+development:
+  <<: *default
+  database: blog111
+
