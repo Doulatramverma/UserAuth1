@@ -25,15 +25,23 @@ class UserRegionsController < ApplicationController
   # POST /user_regions.json
   def create
     @user_region = UserRegion.new(user_region_params)
-        @user_region.right="true"
-        @user_region.left="true"
-    respond_to do |format|
-      if @user_region.save
-        format.html { redirect_to @user_region, notice: 'User region was successfully created.' }
-        format.json { render :show, status: :created, location: @user_region }
+    if params[:user_region][:right_value].present?
+      @user_region=UserRegion.find_by_region_id(params[:user_region][:region_id])
+      @user_region.destroy
+      redirect_to :back
       else
-        format.html { render :new }
-        format.json { render json: @user_region.errors, status: :unprocessable_entity }
+      @user_region = UserRegion.new(user_region_params)
+      @user_region.right=true
+      # @user_region.left == true
+  
+     respond_to do |format|
+       if @user_region.save
+         format.html { redirect_to @user_region, notice: 'User region was successfully created.' }
+         format.json { render :show, status: :created, location: @user_region }
+         else
+         format.html { render :new }
+         format.json { render json: @user_region.errors, status: :unprocessable_entity }
+       end
       end
     end
   end
@@ -70,6 +78,6 @@ class UserRegionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_region_params
-      params.require(:user_region).permit(:user_id, :region_id,:left,:right)
+      params.require(:user_region).permit(:region_name,:user_id, :region_id,:left,:right)
     end
 end
