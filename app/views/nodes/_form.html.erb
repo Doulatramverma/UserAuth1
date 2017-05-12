@@ -1,4 +1,6 @@
-<%= form_for(node) do |f| %>
+
+
+<%= form_for node,:html=>{:class=>"form-horizontal"} do |f| %>
   <% if node.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(node.errors.count, "error") %> prohibited this node from being saved:</h2>
@@ -10,19 +12,33 @@
       </ul>
     </div>
   <% end %>
+  
 
-  <div class="field">
-    <%= f.label :node_name %>
-    <%= f.text_field :node_name %>
-  </div>
+  <div class="form-group">
+        <label class="col-md-4 control-label">Node_Name</label>
+        <div class="col-md-6  inputGroupContainer">
+        
+            <%= f.text_field :node_name, :class=>"form-control" %>
+          </div>
+        </div>
+      
 
-  <div class="field">
-    <%= f.label :place_id %>
-    <%= f.number_field :place_id %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">place</label>
+        <div class="col-md-6  inputGroupContainer">
+          
+            <%= f.text_field :place_id, :class=>"form-control" %>
+          </div>
+        </div><br><br>
+      
+     
+  
+  <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <%=f.submit :class=>"btn btn-success" %>
+        </div>
+      </div>
 <% end %>
+
+

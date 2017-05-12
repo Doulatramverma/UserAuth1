@@ -1,5 +1,9 @@
-<h1>New Node</h1>
+<center><h1>New Node</h1></center>
 
 <%= render 'form', node: @node %>
-
-<%= link_to 'Back', nodes_path %>
+<div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+<%= link_to 'Back', nodes_path,:class=>"btn btn-success" %>
+</div>
+</div>

@@ -37,7 +37,9 @@
         <td><%= manager.notes%></td>
         <td><%#= manager.image_id%></td>
         <td><%= manager.active %></td>
-        <td><%= link_to 'Show',  manager_path(manager),:class=>"btn btn-info" %></td>
+      <td><%= link_to 'Show',  manager_path(manager),:class=>"btn btn-info" %></td>
+          <% if user_permission_admin? %>
+          <% elsif  user_check(user, current_user) %>
          <td><%= link_to 'Edit', edit_manager_path(manager),:class=>"btn btn-warning" %></td>
          <td><%= link_to 'Destroy', manager_path(manager), method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
         
