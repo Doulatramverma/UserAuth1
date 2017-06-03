@@ -21,9 +21,9 @@
         <td><%if user_region.region_id.present?%>
   <%= Region.find(user_region.region_id).region_name %>
      <%end%></td>
-        <td><%= link_to 'Show', user_region %></td>
-        <td><%= link_to 'Edit', edit_user_region_path(user_region) %></td>
-        <td><%= link_to 'Destroy', user_region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_region,:class=>"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_user_region_path(user_region),:class=>"btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', user_region, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

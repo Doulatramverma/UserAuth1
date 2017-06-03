@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>FirstName:</strong>
+  <%= @manager.first_name %>
+</p>
+
+<p>
+  <strong>LastName:</strong>
+  <%= @manager.last_name %>
+</p>
+
+<p>
+  <strong>company:</strong>
+  <%if @manager.company_id.present? %> 
+  <%= Company.find(@manager.company_id).name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%if @manager.role_id.present? %> 
+  <%= UserRole.find(@manager.role_id).role_name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>Start_date:</strong>
+  <%= @manager.start_date %>
+</p>
+
+<p>
+  <strong>End_date:</strong>
+  <%= @manager.end_date %>
+</p>
+
+<p>
+  <strong>Monthly_Charge:</strong>
+  <%= @manager.monthly_charge %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @manager.notes%>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%if @manager.image_id.present? %> 
+  <%= Image.find(@manager.image_id).image_name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @manager.active %>
+</p>

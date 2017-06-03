@@ -41,17 +41,18 @@
          <td><%#= manager.image_id%></td>
          <td><%= manager.active %></td>
          <td><%= link_to 'Show', show_page_manager_path(manager),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
           <% if user_permission_admin? %>
 
-           <td><%= link_to 'Edit', edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+           <td><%= link_to 'Edit', dit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
            <td><%= link_to 'Destroy', manager_path(manager), method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
 
            <% elsif  user_check(user, current_user) %>
 
-            <td><%= link_to 'Edit', edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+            <td><%= link_to 'Edit',  edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
             <td><%= link_to 'Destroy', manager_path(manager), method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
            <% elsif user_permission_user(user, current_user)%> 
-           <td><%= link_to 'Edit', edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+           <td><%= link_to 'Edit',  edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
           <% end %>
       </tr>
     <% end %>
@@ -59,37 +60,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Manager', new_manager_path,:class=>"btn btn-success" %>
-</div>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
-       <h4 class="modal-title">User Detials Info</h4>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-      </div>
-     </div>
-    </div>
-</div>
- 
- <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
-       <h4 class="modal-title"> update User Info</h4>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-      </div>
-     </div>
-    </div>
 </div>

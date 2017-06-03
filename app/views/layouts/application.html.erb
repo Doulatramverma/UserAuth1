@@ -23,26 +23,25 @@
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
             <li class="active"><%=link_to 'Home',companies_path%></li>
-             <li><%#=link_to 'Admin','admin'%></li>
              <li><%=link_to 'country',new_country_path%></li>
              <li><%=link_to 'State',new_state_path%></li>
              <li><%=link_to 'city',new_city_path%></li>
              <li><%=link_to 'User Details',managers_path%></li>
-             
-
-          <ul class="nav navbar-nav navbar-right">
+             <li><%=link_to 'Add Company',new_company_path%></li>
+            <li><%=link_to 'Add Place',new_place_path%></li>
+            <li><%=link_to 'Add User',new_manager_path%></li>
+            <li><%=link_to 'Add Role',new_user_role_path%></li>
+            <li><%=link_to 'User to Region',new_user_region_path%></li>
+            <li><%=link_to 'Role Details',user_roles_path%></li>
+            <li><%= link_to 'Add Region', new_region_path %></li>
+            <ul class="nav navbar-nav navbar-right">
             <% unless user_signed_in? %>
             <li><a href="/users/sign_in">Login</a></li>
             <li><a href="/users/sign_up">Register</a></li>
             <% else %>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <% end%>
-            <li><%=link_to 'Add Company',new_company_path%></li>
-            <li><%=link_to 'Add Place',new_place_path%></li>
-            <li><%=link_to 'Add User',new_manager_path%></li>
-            <li><%=link_to 'Add Role',new_user_role_path%></li>
-            <li><%=link_to 'User to Region',new_user_region_path%></li>
-            <li><%=link_to 'Role Details',user_roles_path%></li>
+            
 
           </ul>
         </div><!--/.nav-collapse -->

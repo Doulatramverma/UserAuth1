@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  before_action :set_country, only: [:show, :edit, :update, :destroy]
+  before_action :set_country, only: [:show, :edit, :update, :destroy,:show_page,:edit_country]
 
   # GET /countries
   # GET /countries.json
@@ -11,6 +11,9 @@ class CountriesController < ApplicationController
   # GET /countries/1.json
   def show
   end
+   def show_page
+   render 'countries/show_page'
+  end
 
   # GET /countries/new
   def new
@@ -20,6 +23,9 @@ class CountriesController < ApplicationController
   # GET /countries/1/edit
   def edit
   end
+   def edit_company
+     render 'countries/edit_country'
+    end
 
   # POST /countries
   # POST /countries.json
@@ -42,7 +48,8 @@ class CountriesController < ApplicationController
   def update
     respond_to do |format|
       if @country.update(country_params)
-        format.html { redirect_to @country, notice: 'Country was successfully updated.' }
+        @countries=Country.all
+        format.js { render :file=> 'countries/update_countries.js.erb',  notice: 'Country was successfully updated.' }
         format.json { render :show, status: :ok, location: @country }
       else
         format.html { render :edit }

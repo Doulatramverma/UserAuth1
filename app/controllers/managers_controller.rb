@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-	  before_action :set_manager, only: [:show, :edit, :update, :destroy]
+	  before_action :set_manager, only: [:show, :edit, :update, :destroy,:show_page,:edit_manager]
 
  
   def index
@@ -9,7 +9,9 @@ class ManagersController < ApplicationController
   
   def show
   end
-
+ def show_page
+   render 'managers/show_page'
+  end
   
   def new
     @manager = User.new
@@ -20,7 +22,9 @@ class ManagersController < ApplicationController
   
   def edit
   end
-
+  def edit_company
+     render 'managers/edit_manager'
+    end
  
   def create
     @manager = User.new(manager_params)
@@ -44,7 +48,8 @@ class ManagersController < ApplicationController
   def update
     respond_to do |format|
       if @manager.update(manager_params)
-        format.html { redirect_to managers_path, notice: 'Manager was successfully updated.' }
+         @managers=User.all
+        format.js { render :file=> 'managers/update_managers.js.erb',  notice: 'Manager was successfully updated.'}
         format.json { render :show, status: :ok, location: @manager }
        else
         format.html { render :edit }

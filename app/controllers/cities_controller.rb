@@ -1,5 +1,5 @@
   class CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :edit, :update, :destroy]
+  before_action :set_city, only: [:show, :edit, :update, :destroy,:show_page,:edit_city]
 
   # GET /cities
   # GET /cities.json
@@ -11,7 +11,10 @@
   # GET /cities/1.json
   def show
   end
-
+  def show_page
+   render 'cities/show_page'
+  end
+  
   # GET /cities/new
   def new
     @city = City.new
@@ -19,9 +22,11 @@
 
   # GET /cities/1/edit
   def edit
-  end
    
-  
+  end
+   def edit_city
+     render 'cities/edit_city'
+    end
   # POST /cities
   # POST /cities.json
   def create
@@ -41,9 +46,10 @@
   # PATCH/PUT /cities/1
   # PATCH/PUT /cities/1.json
   def update
-    respond_to do |format|
+   respond_to do |format|
       if @city.update(city_params)
-        format.html { redirect_to @city, notice: 'City was successfully updated.' }
+         @cities = City.all
+        format.js { render :file=> 'cities/update_cities.js.erb', notice: 'City was successfully updated.' }
         format.json { render :show, status: :ok, location: @city }
       else
         format.html { render :edit }
@@ -51,7 +57,6 @@
       end
     end
   end
-
 
   # DELETE /cities/1
   # DELETE /cities/1.json

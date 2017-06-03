@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%if @company.country_id.present? %> 
+  <%= Country.find(@company.country_id).country_name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>State:</strong>
+<%if @company.state_id.present? %> 
+  <%= State.find(@company.state_id).state_name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%if @company.city_id.present? %> 
+  <%= City.find(@company.city_id).city_name %> 
+    <% end %> 
+</p>
+
+<p>
+  <strong>Postcode:</strong>
+  <%= @company.postcode %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @company.start_date %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @company.active %>
+</p>
