@@ -125,7 +125,7 @@ Rails.application.routes.draw do
       get :show_page
     end
     member do
-      get :edit_managers
+      get :edit_manager
     end
     
 

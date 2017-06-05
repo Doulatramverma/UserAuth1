@@ -22,7 +22,7 @@ class ManagersController < ApplicationController
   
   def edit
   end
-  def edit_company
+  def edit_manager
      render 'managers/edit_manager'
     end
  

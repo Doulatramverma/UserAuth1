@@ -1,5 +1,5 @@
 class UserRegionsController < ApplicationController
-  before_action :set_user_region, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_region, only: [:show, :edit, :update, :destroy,:show_page,:edit_user_region]
 
   # GET /user_regions
   # GET /user_regions.json
@@ -12,6 +12,12 @@ class UserRegionsController < ApplicationController
   def show
   end
 
+  
+  def show_page
+    render 'user_regions/show_page' 
+   end
+
+
   # GET /user_regions/new
   def new
     @user_region = UserRegion.new
@@ -19,8 +25,10 @@ class UserRegionsController < ApplicationController
 
   # GET /user_regions/1/edit
   def edit
+  end 
+  def edit_user_resion
+    render 'user_resions/edit_user_resion'
   end
-
   # POST /user_regions
   # POST /user_regions.json
   def create
@@ -51,7 +59,8 @@ class UserRegionsController < ApplicationController
   def update
     respond_to do |format|
       if @user_region.update(user_region_params)
-        format.html { redirect_to @user_region, notice: 'User region was successfully updated.' }
+        @user_regions=UserRegion.all
+        format.js { render :file=>'user_regions/update_user_regions.js.erb', notice: 'User region was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_region }
       else
         format.html { render :edit }

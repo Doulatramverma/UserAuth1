@@ -1,5 +1,5 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy]
+  before_action :set_region, only: [:show, :edit, :update, :destroy,:show_page,:edit_region]
 
   # GET /regions
   # GET /regions.json
@@ -11,6 +11,9 @@ class RegionsController < ApplicationController
   # GET /regions/1.json
   def show
   end
+  def show_page
+   render 'regions/show_page'
+  end
 
   # GET /regions/new
   def new
@@ -20,6 +23,9 @@ class RegionsController < ApplicationController
   # GET /regions/1/edit
   def edit
   end
+  def edit_region
+     render 'regions/edit_region'
+    end
 
   # POST /regions
   # POST /regions.json
@@ -42,7 +48,8 @@ class RegionsController < ApplicationController
   def update
     respond_to do |format|
       if @region.update(region_params)
-        format.html { redirect_to @region, notice: 'Region was successfully updated.' }
+         @regions = Region.all
+        format.js { render :file=> 'regions/update_regions.js.erb', notice: 'Region was successfully updated.' }
         format.json { render :show, status: :ok, location: @region }
       else
         format.html { render :edit }

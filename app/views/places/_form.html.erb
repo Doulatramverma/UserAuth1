@@ -1,6 +1,6 @@
 
 <div class="Container">
-<%= form_for place do |f| %>
+<%= form_for(place, :remote=>true) do |f| %>
   <% if place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>
@@ -15,23 +15,23 @@
   
 
    <div class="form-group">
-      <label class="col-sm-1 control-label">PlaceName</label>
+      <label class="col-sm-2 control-label">PlaceName</label>
       <div class="col-sm-6  inputGroupContainer">
         
        <%= f.text_field :place_name, :placeholder=>"PlaceName", :class=>"form-control" %>
       </div>
     </div><br><br><br>
 
-    <div class="form-group">
+   <!--  <div class="form-group">
       <label class="col-sm-1 control-label">Node Name</label>
       <div class="col-sm-6  inputGroupContainer">
         
        <%= f.text_field :node_name, :placeholder=>"NodeName", :class=>"form-control" %>
       </div>
-    </div><br><br><br>
+    </div><br><br><br> -->
 
     <div class="form-group">
-      <label class="col-sm-1 control-label">Company</label>
+      <label class="col-sm-2 control-label">Company</label>
       <div class="col-sm-3  inputGroupContainer">
         <%=f.select(:company_id, Company.all.collect {|u| [u.name, u.id]},:prompt => "Select Company") %>
       </div>

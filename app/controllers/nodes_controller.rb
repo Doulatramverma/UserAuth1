@@ -1,5 +1,5 @@
 class NodesController < ApplicationController
-  before_action :set_node, only: [:show, :edit, :update, :destroy]
+  before_action :set_node, only: [:show, :edit, :update, :destroy,:show_page,:edit_node]
 
   # GET /nodes
   # GET /nodes.json
@@ -11,6 +11,10 @@ class NodesController < ApplicationController
   # GET /nodes/1.json
   def show
   end
+   def show_page
+   render 'nodes/show_page'
+  end
+  
 
   # GET /nodes/new
   def new
@@ -20,6 +24,9 @@ class NodesController < ApplicationController
   # GET /nodes/1/edit
   def edit
   end
+  def edit_node
+     render 'nodes/edit_node'
+    end
 
   # POST /nodes
   # POST /nodes.json
@@ -42,7 +49,8 @@ class NodesController < ApplicationController
   def update
     respond_to do |format|
       if @node.update(node_params)
-        format.html { redirect_to @node, notice: 'Node was successfully updated.' }
+        @nodes=Node.all
+        format.js { render :file=>'nodes/update_nodes.js.erb', notice: 'Node was successfully updated.' }
         format.json { render :show, status: :ok, location: @node }
       else
         format.html { render :edit }

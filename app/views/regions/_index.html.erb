@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<div class="region-container"
+<h1>Regions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Region name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regions.each do |region| %>
+      <tr>
+        <td><%= region.region_name %></td>
+        <td><%= link_to 'Show', show_page_region_path(region),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
+        <td><%= link_to 'Edit', edit_region_region_path(region),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+        <td><%= link_to 'Destroy', region, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>

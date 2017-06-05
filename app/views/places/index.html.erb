@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<div class="place-container"
 <h1>Places</h1>
 
 <table class="table">
@@ -15,9 +15,13 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.place_name %></td>
-        <td><%= place.company_id %></td>
-        <td><%= link_to 'Show', place,:class=>"btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_place_path(place),:class=>"btn btn-warning" %></td>
+        <td><td><%if place.company_id.present? %> 
+         <%= Company.find(place.company_id).name %> 
+         <%end %>
+        </td>
+        <td><%= link_to 'Show',  show_page_place_path(place),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
+        <td><%= link_to 'Edit', edit_place_place_path(place),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
         <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
@@ -27,3 +31,38 @@
 <br>
 
 <%= link_to 'New Place', new_place_path,:class=>"btn btn-success" %>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title">Place Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+ 
+ <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title"> update Place Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+
+

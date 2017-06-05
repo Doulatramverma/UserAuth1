@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="place-container">
+<h1>Places</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Place name</th>
+      <th>Company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.place_name %></td>
+        <td><%if place.company_id.present? %> 
+         <%= Company.find(place.company_id).name %> 
+         <%end %>
+        </td>
+        <td><%= link_to 'Show', show_page_place_path(place),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
+        <td><%= link_to 'Edit',  edit_place_place_path(place),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>

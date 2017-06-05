@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class="node-container">
 <h1>Nodes</h1>
 
 <table class="table">
@@ -16,8 +17,10 @@
       <tr>
         <td><%= node.node_name %></td>
         <td><%= node.place_id %></td>
-        <td><%= link_to 'Show', node %></td>
-        <td><%= link_to 'Edit', edit_node_path(node) %></td>
+        <td><%= link_to 'Show',show_page_node_path(node),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
+        <td><%= link_to 'Edit', edit_node_node_path(node),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+        
         <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -27,3 +30,37 @@
 <br>
 
 <%= link_to 'New Node', new_node_path %>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title">Node Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+ 
+ <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title"> update Node Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+

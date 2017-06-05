@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<div class="state-container">
 <h1>States</h1>
 
 <table class="table">
@@ -16,8 +16,10 @@
       <tr>
         <td><%= state.state_name %></td>
         <td><%= state.country_id %></td>
-        <td><%= link_to 'Show', state,:class=>"btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_state_path(state),:class=>"btn btn-warning" %></td>
+        <td><%= link_to 'Show',  show_page_state_path(state),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
+
+        <td><%= link_to 'Edit', edit_state_state_path(state),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
+        
         <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
@@ -27,3 +29,36 @@
 <br>
 
 <%= link_to 'New State', new_state_path,:class=>"btn btn-success" %>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title">User Detials Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+ 
+ <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title"> update User Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+     </div>
+    </div>
+</div>
+

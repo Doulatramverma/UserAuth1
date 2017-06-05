@@ -23,7 +23,7 @@ class CountriesController < ApplicationController
   # GET /countries/1/edit
   def edit
   end
-   def edit_company
+   def edit_country
      render 'countries/edit_country'
     end
 

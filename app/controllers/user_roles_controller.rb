@@ -1,5 +1,5 @@
 class UserRolesController < ApplicationController
-  before_action :set_user_role, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_role, only: [:show, :edit, :update, :destroy,:show_page,:edit_user_role]
 
   # GET /user_roles
   # GET /user_roles.json
@@ -10,7 +10,12 @@ class UserRolesController < ApplicationController
   # GET /user_roles/1
   # GET /user_roles/1.json
   def show
+
   end
+   def show_page
+    render 'user_roles/show_page' 
+   end
+
 
   # GET /user_roles/new
   def new
@@ -19,6 +24,10 @@ class UserRolesController < ApplicationController
 
   # GET /user_roles/1/edit
   def edit
+  end
+
+  def edit_user_resion
+    render 'user_roles/edit_user_role'
   end
 
   # POST /user_roles
@@ -42,7 +51,8 @@ class UserRolesController < ApplicationController
   def update
     respond_to do |format|
       if @user_role.update(user_role_params)
-        format.html { redirect_to @user_role, notice: 'User role was successfully updated.' }
+        @user_roles = UserRole.all
+        format.js { render :file=>'user_roles/update_user_roles.js.erb', notice: 'User role was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_role }
       else
         format.html { render :edit }
