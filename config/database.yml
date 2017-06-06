@@ -22,6 +22,6 @@ production:
 development: 
    adapter: mysql2
    encoding: utf8 
-   database: db1
+   database: db2
    username: root 
    password: root 

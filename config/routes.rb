@@ -85,11 +85,10 @@ Rails.application.routes.draw do
    end 
 
   resources :countries do
-    member do 
-      get :edit_country
-    end 
     member do
+      get :edit_country
       get :show_page
+       post :comments
     end
   end
 
@@ -112,12 +111,13 @@ Rails.application.routes.draw do
   end
 
   resources :companies do
+    resources :comments
+  
     member do 
       get :edit_company
-    end 
-    member do
       get :show_page
-    end
+    end 
+    
   end
   
   resources :managers do
@@ -127,9 +127,9 @@ Rails.application.routes.draw do
     member do
       get :edit_manager
     end
-    
-
   end
+
+  
 
   devise_for :users
   root 'companies#index'

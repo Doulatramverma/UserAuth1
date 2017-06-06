@@ -11,6 +11,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    #@commentable=Company.find(params[:id])
+
   end
   def show_page
    render 'companies/show_page'

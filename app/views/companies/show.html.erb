@@ -41,5 +41,11 @@
   <%= @company.active %>
 </p>
 
+<h2>Comments</h2>
+<%= render 'comments/comment' %>
+ 
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

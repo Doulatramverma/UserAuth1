@@ -10,8 +10,11 @@ class CountriesController < ApplicationController
   # GET /countries/1
   # GET /countries/1.json
   def show
+    @commentable=Country.find(params[:id])
+    @comment=Comment.new
+
   end
-   def show_page
+  def show_page
    render 'countries/show_page'
   end
 
@@ -23,15 +26,22 @@ class CountriesController < ApplicationController
   # GET /countries/1/edit
   def edit
   end
-   def edit_country
-     render 'countries/edit_country'
-    end
+
+  def comments
+    @commentable= Country.find(params[:id])
+    @comment= @commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to country_path
+  end 
+
+  def edit_country
+    render 'countries/edit_country'
+ end
 
   # POST /countries
   # POST /countries.json
   def create
     @country = Country.new(country_params)
-
     respond_to do |format|
       if @country.save
         format.html { redirect_to @country, notice: 'Country was successfully created.' }
@@ -75,6 +85,9 @@ class CountriesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+    params.require(:comment).permit(:commenter, :body)
+  end
     def country_params
       params.require(:country).permit(:country_name, :country_code)
     end

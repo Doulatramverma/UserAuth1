@@ -10,5 +10,36 @@
   <%= @country.country_code %>
 </p>
 
+
+<h2>Comments</h2>
+
+<% @country.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body%>
+  </p> 
+  <%end%>
+
+  <h2>Add a comment:</h2>
+ <%= form_for @comment, :url =>comments_country_path , :method =>"post"  do |f| %>
+
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter%>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body%>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<%end%>
+
 <%= link_to 'Edit', edit_country_path(@country) %> |
 <%= link_to 'Back', countries_path %>
