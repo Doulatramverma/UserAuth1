@@ -21,7 +21,23 @@ class RegionsController < ApplicationController
   def new
     @region = Region.new
   end
+   
+  def upvote
+   @region = Region.find(params[:id])
+    @region.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=> 'regions/regions.js.erb'}
+    end
+  end
 
+  def downvote
+   @region = Region.find(params[:id])
+    @region.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'regions/regions.js.erb'}
+    end
+  end 
   # GET /regions/1/edit
   def edit
   end

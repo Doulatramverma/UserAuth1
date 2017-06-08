@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.user_region-up-<%=@user_region.id%>').text("<%= @user_region.get_upvotes.size %>");
+ $('.user_region-down-<%=@user_region.id%>').text("<%= @user_region.get_downvotes.size %>"); });

@@ -14,7 +14,23 @@ class UserRegionsController < ApplicationController
    @commentable=UserRegion.find(params[:id])
    @comment=Comment.new
   end
+    
+     def upvote
+   @user_region = UserRegion.find(params[:id])
+    @user_region.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=> 'user_regions/user_regions.js.erb'}
+    end
+  end
 
+  def downvote
+   @user_region = UserRegion.find(params[:id])
+    @user_region.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'user_regions/user_regions.js.erb'}
+    end
+  end 
   
   def show_page
     render 'user_regions/show_page' 

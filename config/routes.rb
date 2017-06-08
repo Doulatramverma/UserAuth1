@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       get :edit_region
       get :show_page
       post :comments
+      put "like", to: "regions#upvote"
+      put "dislike", to: "regions#downvote"
     end
   end
 
@@ -105,6 +107,8 @@ Rails.application.routes.draw do
       get :edit_user_region
       get :show_page
       post :comments
+       put "like", to: "user_regions#upvote"
+      put "dislike", to: "user_regions#downvote"
     end
   end
 
@@ -113,6 +117,8 @@ Rails.application.routes.draw do
       get :edit_user_role
       get :show_page
       post :comments
+       put "like", to: "user_roles#upvote"
+      put "dislike", to: "user_roles#downvote"
     end
   end
 

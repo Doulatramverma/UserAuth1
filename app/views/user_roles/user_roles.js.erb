@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.user_role-up-<%=@user_role.id%>').text("<%= @user_role.get_upvotes.size %>");
+ $('.user_role-down-<%=@user_role.id%>').text("<%= @user_role.get_downvotes.size %>"); });

@@ -6,6 +6,8 @@
   <thead>
     <tr>
       <th>Role name</th>
+      <th>Like</th>
+      <th>DisLike</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +16,21 @@
     <% @user_roles.each do |user_role| %>
       <tr>
         <td><%= user_role.role_name %></td>
+
+        <div class="col-md-6">
+         <div class="btn-group pull-right" style="">
+           <td><%= link_to like_user_role_path(user_role), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+            <span class="glyphicon glyphicon-thumbs-up user_role-up-<%=user_role.id%>" style='width: 50px' >
+             <%= user_role.get_upvotes.size %> <% end %></td>
+            </span>
+
+           <td><%= link_to dislike_user_role_path(user_role), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+           <span class="glyphicon glyphicon-thumbs-down user_role-down-<%=user_role.id%>" style='width: 50px'>
+             <%= user_role.get_downvotes.size %><% end %></td>
+           </span>
+         </div>
+       </div>
+
         <td><%= link_to 'Show',  show_page_user_role_path(user_role),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td> 
         <td><%= link_to 'Edit',edit_user_role_user_role_path(user_role),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
         

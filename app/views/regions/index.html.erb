@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="region-container"
+<div class="region-container">
 <h1>Regions</h1>
 
 <table class="table">
@@ -14,6 +14,21 @@
     <% @regions.each do |region| %>
       <tr>
         <td><%= region.region_name %></td>
+        <div class="col-md-6">
+         <div class="btn-group pull-right" style="">
+           <td><%= link_to like_region_path(region), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+            <span class="glyphicon glyphicon-thumbs-up region-up-<%=region.id%>" style='width: 50px' >
+             <%= region.get_upvotes.size %> <% end %></td>
+            </span>
+
+           <td><%= link_to dislike_region_path(region), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+           <span class="glyphicon glyphicon-thumbs-down region-down-<%=region.id%>" style='width: 50px'>
+             <%= region.get_downvotes.size %><% end %></td>
+           </span>
+         </div>
+       </div>
+
+
         <td><%= link_to 'Show', show_page_region_path(region),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
 
         <td><%= link_to 'Edit',edit_region_region_path(region),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>

@@ -7,6 +7,8 @@
     <tr>
       <th>User</th>
       <th>Region</th>
+       <th>Like</th>
+        <th>Dislike</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +23,20 @@
         <td><%if user_region.region_id.present?%>
   <%= Region.find(user_region.region_id).region_name %>
      <%end%></td>
+      <div class="col-md-6">
+         <div class="btn-group pull-right" style="">
+           <td><%= link_to like_user_region_path(user_region), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+            <span class="glyphicon glyphicon-thumbs-up user_region-up-<%=user_region.id%>" style='width: 50px' >
+             <%= user_region.get_upvotes.size %> <% end %></td>
+            </span>
+
+           <td><%= link_to dislike_user_region_path(user_region), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+           <span class="glyphicon glyphicon-thumbs-down user_region-down-<%=user_region.id%>" style='width: 50px'>
+             <%= user_region.get_downvotes.size %><% end %></td>
+           </span>
+         </div>
+       </div>
+
         <td><%= link_to 'Show',  show_page_user_region_path(user_region),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
 
         <td><%= link_to 'Edit', edit_user_region_user_region_path(user_region),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>

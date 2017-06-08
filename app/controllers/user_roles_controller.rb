@@ -13,11 +13,29 @@ class UserRolesController < ApplicationController
    @commentable=UserRole.find(params[:id])
    @comment=Comment.new
   end
-   def show_page
+
+     
+  def show_page
     render 'user_roles/show_page' 
-   end
+  end
 
+ def upvote
+   @user_role = UserRole.find(params[:id])
+   @user_role.upvote_by current_user
+   respond_to do |format|
+      format.js { render :file=> 'user_roles/user_roles.js.erb'}
+    end
+  end
 
+  def downvote
+   @user_role = UserRole.find(params[:id])
+    @user_role.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'user_roles/user_roles.js.erb'}
+    end
+  end 
+  
   # GET /user_roles/new
   def new
     @user_role = UserRole.new
