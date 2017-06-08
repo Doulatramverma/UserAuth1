@@ -18,6 +18,24 @@ class CountriesController < ApplicationController
    render 'countries/show_page'
   end
 
+  def upvote
+   @country = Country.find(params[:id])
+    @country.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=>  'countries/countries.js.erb'}
+    end
+  end
+
+  def downvote
+   @country = Country.find(params[:id])
+    @country.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'countries/countries.js.erb'}
+    end
+   end
+
+
   # GET /countries/new
   def new
     @country = Country.new
@@ -79,16 +97,17 @@ class CountriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_country
-      @country = Country.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-    params.require(:comment).permit(:commenter, :body)
+    
+  def set_country
+    @country = Country.find(params[:id])
   end
-    def country_params
-      params.require(:country).permit(:country_name, :country_code)
-    end
+
+
+  def comment_params
+   params.require(:comment).permit(:commenter, :body)
+  end
+
+  def country_params
+    params.require(:country).permit(:country_name, :country_code)
+  end
 end

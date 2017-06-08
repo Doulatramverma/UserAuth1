@@ -7,6 +7,8 @@
     <tr>
       <th>State name</th>
       <th>Country</th>
+       <th>Like</th>
+        <th>disLike</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,23 @@
       <tr>
         <td><%= state.state_name %></td>
         <td><%= state.country_id %></td>
+         <div class="col-md-6">
+          <div class="btn-group pull-right" style="">
+         <td><%= link_to like_state_path(state), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+          <span class="glyphicon glyphicon-thumbs-up state-up-<%=state.id%>" style='width: 50px' >
+             <%= state.get_upvotes.size %> <% end %></td>
+          </span>
+
+          <td><%= link_to dislike_state_path(state), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+          <span class="glyphicon glyphicon-thumbs-down state-down-<%=state.id%>" style='width: 50px'>
+           <%= state.get_downvotes.size %><% end %></td>
+          </span>
+      </div>
+    </div>
+
+
+
+         
         <td><%= link_to 'Show',  show_page_state_path(state),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
 
         <td><%= link_to 'Edit', edit_state_state_path(state),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>

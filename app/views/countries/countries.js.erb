@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.country-up-<%=@country.id%>').text("<%= @country.get_upvotes.size %>");
+ $('.country-down-<%=@country.id%>').text("<%= @country.get_downvotes.size %>"); });

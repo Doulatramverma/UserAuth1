@@ -10,7 +10,8 @@ class UserRolesController < ApplicationController
   # GET /user_roles/1
   # GET /user_roles/1.json
   def show
-
+   @commentable=UserRole.find(params[:id])
+   @comment=Comment.new
   end
    def show_page
     render 'user_roles/show_page' 
@@ -24,6 +25,12 @@ class UserRolesController < ApplicationController
 
   # GET /user_roles/1/edit
   def edit
+  end
+  def comments
+    @commentable=UserRole.find(params[:id])
+    @comment=@commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to user_role_path
   end
 
   def edit_user_resion
@@ -76,7 +83,9 @@ class UserRolesController < ApplicationController
     def set_user_role
       @user_role = UserRole.find(params[:id])
     end
-
+  def comment_params
+    params.require(:comment).permit(:commenter,:body)
+  end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_role_params
       params.require(:user_role).permit(:role_name)

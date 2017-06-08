@@ -31,6 +31,24 @@ class CompaniesController < ApplicationController
      render 'companies/edit_company'
     end
 
+    def upvote
+     @company = Company.find(params[:id])
+     @company.upvote_by current_user
+     respond_to do |format|
+       format.js { render :file=>  'companies/companies.js.erb'}
+      end
+    end
+
+    def downvote
+     @company = Company.find(params[:id])
+      @company.downvote_by current_user
+      respond_to do |format|
+       format.html { redirect_to :back }
+       format.js {render :file=> 'companies/companies.js.erb'}
+      end
+    end
+
+
   # POST /companies
   # POST /companies.json
   def create

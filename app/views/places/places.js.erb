@@ -1,0 +1,3 @@
+(function() 
+	{ $('.place-up-<%=@place.id%>').text("<%= @place.get_upvotes.size %>");
+ $('.place-down-<%=@place.id%>').text("<%= @place.get_downvotes.size %>"); });

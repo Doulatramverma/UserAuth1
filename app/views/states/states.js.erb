@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.state-up-<%=@state.id%>').text("<%= @state.get_upvotes.size %>");
+ $('.state-down-<%=@state.id%>').text("<%= @state.get_downvotes.size %>"); });

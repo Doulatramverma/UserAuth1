@@ -1,0 +1,31 @@
+
+<% @company.comments.each do |comment| %>
+<p>
+
+  <strong>Commenter:</strong>
+  <%= comment.commenter %>
+</p>
+ 
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+<div class="btn-group pull-right">
+         <td><%= link_to like_comment_path(comment), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+
+          <span class="glyphicon glyphicon-thumbs-up comment-up-<%=comment.id%>" style='width: 50px'>
+             <%= comment.get_upvotes.size %> <% end %></td>
+          </span>
+
+          <td><%= link_to dislike_comment_path(comment), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+
+          <span class="glyphicon glyphicon-thumbs-down comment-down-<%=comment.id%>" style='width: 50px'>
+           <%= comment.get_downvotes.size %><% end %></td>
+          </span>
+      </div> 
+<p>
+  <%= link_to 'Destroy Comment', [comment.commentable, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
+<%end%>

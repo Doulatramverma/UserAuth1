@@ -18,7 +18,9 @@ class ManagersController < ApplicationController
     # if params[:start_date].present? 
     #   @manager = User.where('created_at > ? AND created_at < ?', params[:start_date].to_date, params[:end_date].to_date) 
     # end
-  end   
+  end  
+
+ 
   
   def edit
   end

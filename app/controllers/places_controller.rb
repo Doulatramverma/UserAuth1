@@ -10,6 +10,8 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+    @commentable=Place.find(params[:id])
+    @comment=Comment.new
   end
    def show_page
    render 'places/show_page'
@@ -19,9 +21,33 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
   end
-
-  # GET /places/1/edit
+   
+   
   def edit
+  end
+    
+  def upvote
+   @place = Place.find(params[:id])
+    @place.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=>  'places/places.js.erb'}
+    end
+  end
+
+  def downvote
+   @place = Place.find(params[:id])
+    @place.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'places/places.js.erb'}
+    end
+  end 
+  # GET /places/1/edit
+  def comments
+    @commentable=Place.find(params[:id])
+    @comment=@commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to place_path
   end
   def edit_place
      render 'places/edit_place'
@@ -77,7 +103,9 @@ class PlacesController < ApplicationController
     def set_place
       @place = Place.find(params[:id])
     end
-
+     def comment_params
+      params.require(:comment).permit(:commenter,:body)
+     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:place_name, :company_id)

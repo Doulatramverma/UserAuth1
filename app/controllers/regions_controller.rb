@@ -10,6 +10,8 @@ class RegionsController < ApplicationController
   # GET /regions/1
   # GET /regions/1.json
   def show
+    @commentable=Region.find(params[:id])
+   @comment=Comment.new
   end
   def show_page
    render 'regions/show_page'
@@ -23,6 +25,14 @@ class RegionsController < ApplicationController
   # GET /regions/1/edit
   def edit
   end
+
+   def comments
+    @commentable=Region.find(params[:id])
+    @comment=@commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to region_path
+  end
+
   def edit_region
      render 'regions/edit_region'
     end
@@ -73,7 +83,10 @@ class RegionsController < ApplicationController
     def set_region
       @region = Region.find(params[:id])
     end
-
+ 
+   def comment_params
+    params.require(:comment).permit(:commenter,:body)
+  end
     # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
       params.require(:region).permit(:region_name)

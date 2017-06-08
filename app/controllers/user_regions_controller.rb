@@ -10,6 +10,9 @@ class UserRegionsController < ApplicationController
   # GET /user_regions/1
   # GET /user_regions/1.json
   def show
+    
+   @commentable=UserRegion.find(params[:id])
+   @comment=Comment.new
   end
 
   
@@ -26,6 +29,14 @@ class UserRegionsController < ApplicationController
   # GET /user_regions/1/edit
   def edit
   end 
+
+  def comments
+    @commentable=UserRegion.find(params[:id])
+    @comment=@commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to user_region_path
+  end
+
   def edit_user_resion
     render 'user_resions/edit_user_resion'
   end
@@ -80,13 +91,17 @@ class UserRegionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_region
-      @user_region = UserRegion.find(params[:id])
-    end
+  
+  def set_user_region
+    @user_region = UserRegion.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_region_params
-      params.require(:user_region).permit(:region_name,:user_id, :region_id,:left,:right)
-    end
+  def comment_params
+    params.require(:comment).permit(:commenter,:body)
+  end
+
+  
+  def user_region_params
+    params.require(:user_region).permit(:region_name,:user_id, :region_id,:left,:right)
+  end
 end

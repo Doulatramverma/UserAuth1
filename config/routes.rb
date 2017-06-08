@@ -31,9 +31,8 @@ Rails.application.routes.draw do
   resources :regions do
     member do 
       get :edit_region
-    end 
-    member do
       get :show_page
+      post :comments
     end
   end
 
@@ -51,67 +50,78 @@ Rails.application.routes.draw do
   resources :places do
     member do 
       get :edit_place
-    end 
-    member do
       get :show_page
+      post :comments
+      put "like", to: "places#upvote"
+      put "dislike", to: "places#downvote"
     end
   end
+
   resources :images do
     collection do 
       get :login_page
     end 
-    end
+  end
+  
+
   resources :cities do
     collection do
       get :get_cities
-      end
-      member do
-       get :show_page
-      end
-       member do
+    end
+    member do
+      get :show_page
       get :edit_city
+      post :comments
+      put "like", to: "cities#upvote"
+      put "dislike", to: "cities#downvote"
     end
   end 
+
   resources :states do
     collection do
       get :get_states
     end
     member do 
       get :edit_state
-    end 
-    member do
-    get :show_page
+      get :show_page
+      post :comments
+      put "like", to: "states#upvote"
+      put "dislike", to: "states#downvote"
     end
-   end 
+  end 
 
   resources :countries do
     member do
       get :edit_country
       get :show_page
-       post :comments
+      post :comments
+      put "like", to: "countries#upvote"
+      put "dislike", to: "countries#downvote"
     end
   end
 
   resources :user_regions do
     member do 
       get :edit_user_region
-    end 
-    member do
       get :show_page
+      post :comments
     end
   end
 
   resources :user_roles do
    member do 
       get :edit_user_role
-    end 
-    member do
       get :show_page
+      post :comments
     end
   end
 
   resources :companies do
     resources :comments
+     member do
+      put "like", to: "companies#upvote"
+      put "dislike", to: "companies#downvote"
+    end 
   
     member do 
       get :edit_company
@@ -123,12 +133,17 @@ Rails.application.routes.draw do
   resources :managers do
     member do
       get :show_page
-    end
-    member do
       get :edit_manager
+      
     end
   end
 
+ resources :comments, only: [] do
+   member do 
+     put "like", to: "comments#upvote" 
+     put "dislike", to: "comments#downvote" 
+    end 
+  end
   
 
   devise_for :users

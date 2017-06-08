@@ -40,6 +40,7 @@
          <td><%= manager.notes%></td>
          <td><%#= manager.image_id%></td>
          <td><%= manager.active %></td>
+          
          <td><%= link_to 'Show', show_page_manager_path(manager),:class=>"btn btn-info",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal' %></td>
           <% if user_permission_admin? %>
 

@@ -10,6 +10,8 @@ class StatesController < ApplicationController
   # GET /states/1
   # GET /states/1.json
   def show
+    @commentable=State.find(params[:id])
+    @comment=Comment.new
   end
    def show_page
     render 'states/show_page' 
@@ -21,6 +23,31 @@ class StatesController < ApplicationController
 
   # GET /states/1/edit
   def edit
+  end
+
+  def upvote
+   @state = State.find(params[:id])
+    @state.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=>  'states/states.js.erb'}
+    end
+  end
+
+  def downvote
+   @state = State.find(params[:id])
+    @state.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'states/states.js.erb'}
+    end
+   end
+
+
+  def comments
+    @commentable=State.find(params[:id])
+    @comment=@commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to state_path
   end
   def edit_state
     render 'states/edit_state'
@@ -73,12 +100,15 @@ def get_states
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_state
-      @state = State.find(params[:id])
-    end
+  def set_state
+    @state = State.find(params[:id])
+  end
+  def comment_params
+    params.require(:comment).permit(:commenter,:body)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def state_params
-      params.require(:state).permit(:state_name, :country_id)
-    end
+    
+  def state_params
+   params.require(:state).permit(:state_name, :country_id)
+  end
 end

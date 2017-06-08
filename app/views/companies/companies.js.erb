@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.company-up-<%=@company.id%>').text("<%= @company.get_upvotes.size %>");
+ $('.company-down-<%=@company.id%>').text("<%= @company.get_downvotes.size %>"); });

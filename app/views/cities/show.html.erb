@@ -10,5 +10,50 @@
   <%= @city.state_id %>
 </p>
 
+
+<h2>Comments</h2>
+
+<% @city.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body%>
+  </p> 
+  <div class="btn-group pull-right">
+         <td><%= link_to like_comment_path(comment), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+
+          <span class="glyphicon glyphicon-thumbs-up comment-up-<%=comment.id%>" style='width: 50px'>
+             <%= comment.get_upvotes.size %> <% end %></td>
+          </span>
+
+          <td><%= link_to dislike_comment_path(comment), method: :put ,data: { :remote=> true } , :class=> "btn btn-default" do %>
+
+          <span class="glyphicon glyphicon-thumbs-down comment-down-<%=comment.id%>" style='width: 50px'>
+           <%= comment.get_downvotes.size %><% end %></td>
+          </span>
+      </div> 
+<%end%>
+
+<h2>Add a comment:</h2>
+
+<%= form_for @comment, :url =>comments_city_path , :method =>"post"  do |f| %>
+
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter%>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body%>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<%end%>
+
 <%= link_to 'Edit', edit_city_path(@city) %> |
 <%= link_to 'Back', cities_path %>

@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.city-up-<%=@city.id%>').text("<%= @city.get_upvotes.size %>");
+ $('.city-down-<%=@city.id%>').text("<%= @city.get_downvotes.size %>"); });

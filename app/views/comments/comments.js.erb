@@ -1,0 +1,3 @@
+$(function() 
+	{ $('.comment-up-<%=@comment.id%>').text("<%= @comment.get_upvotes.size %>");
+ $('.comment-down-<%=@comment.id%>').text("<%= @comment.get_downvotes.size %>"); });

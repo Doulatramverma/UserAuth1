@@ -10,6 +10,8 @@
   # GET /cities/1
   # GET /cities/1.json
   def show
+    @commentable= City.find(params[:id])
+    @comment=Comment.new
   end
   def show_page
    render 'cities/show_page'
@@ -19,14 +21,40 @@
   def new
     @city = City.new
   end
+  
+  def upvote
+   @city = City.find(params[:id])
+    @city.upvote_by current_user
+    respond_to do |format|
+      format.js { render :file=>  'cities/cities.js.erb'}
+    end
+  end
 
+  def downvote
+   @city = City.find(params[:id])
+    @city.downvote_by current_user
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {render :file=> 'cities/cities.js.erb'}
+    end
+   end
+
+  
   # GET /cities/1/edit
   def edit
    
   end
-   def edit_city
-     render 'cities/edit_city'
-    end
+
+  def comments
+    @commentable= City.find(params[:id])
+    @comment= @commentable.comments.create(comment_params)
+    @comment.save
+    redirect_to city_path
+  end 
+
+  def edit_city
+    render 'cities/edit_city'
+  end
   # POST /cities
   # POST /cities.json
   def create
@@ -74,12 +102,16 @@
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_city
-      @city = City.find(params[:id])
-    end
+  def set_city
+   @city = City.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def city_params
-      params.require(:city).permit(:city_name, :state_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:commenter, :body)
+  end
+
+  
+  def city_params
+    params.require(:city).permit(:city_name, :state_id)
+  end
 end
