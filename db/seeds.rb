@@ -15,5 +15,5 @@ company=Company.create!(name: 'TCS',country_id:country.id,state_id: state.id,cit
 place=Place.create!(place_name:'mp Nagar',company_id:company.id)
 noge=Node.create!(node_name:'dada',place_id: place.id)
 region=Region.create!(region_name:'East')
-user=User.create!(first_name: 'Rahul',last_name:'jain',company_id:company.id,email: 'jain.rahul123@gmail.com',password:'12345678',role_id:role.id,monthly_charge:'20000',image:'index.jpeg2',notes:'adadad',active:'true' 	)
+user=User.create!(first_name: 'Rahul',last_name:'jain',company_id:company.id,email: 'jain.rahul123@gmail.com',password:  "12345678",role_id:role.id,monthly_charge:"20000",image:'index.jpeg2',notes:'adadad',active:'true' 	)
 user_region=UserRegion.create!(user_id:user.id,region_id:user_region.id)
