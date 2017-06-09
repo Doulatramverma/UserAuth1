@@ -1,27 +1,29 @@
-# default: &default
-#   adapter: postgresql
-#   pool: 5
-#   username: root
-#   password: root
-#   timeout: 5000
+default: &default
+  adapter: postgresql
+  pool: 5
+  username: root
+  password: root
+  timeout: 5000
 
-# development:
-#   <<: *default
-#   database: blog1s
+development:
+  <<: *default
+  database: blog1s
 
-# production:
-#   <<: *default
-#   database: blog1s
-production: 
-   adapter: mysql2
-   encoding: utf8 
-   database: db1
-   username: root 
-   password: root 
+production:
+  <<: *default
+  database: blog1s
 
-development: 
-   adapter: mysql2
-   encoding: utf8 
-   database: db2
-   username: root 
-   password: root 
+  
+# production: 
+#    adapter: mysql2
+#    encoding: utf8 
+#    database: db1
+#    username: root 
+#    password: root 
+
+# development: 
+#    adapter: mysql2
+#    encoding: utf8 
+#    database: db2
+#    username: root 
+#    password: root 
