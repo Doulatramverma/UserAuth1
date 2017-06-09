@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-country=Country.create!(Country_name: 'India',Country_code:'IN' )
+country=Country.create!(country_name: 'India',country_code:'IN' )
 state=State.create!(state_name: 'M.P',country_id:country.id )
 city=City.create!(city_name: 'shivpuri',state_id:state.id )
 user_role=UserRole.create!(Role_name:'Admin')
