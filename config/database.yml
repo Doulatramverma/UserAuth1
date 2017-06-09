@@ -13,7 +13,7 @@
 #   <<: *default
 #   database: blog1s
 
-  
+
 production: 
    adapter: mysql2
    encoding: utf8 
@@ -27,3 +27,4 @@ development:
    database: db2
    username: root 
    password: root 
+  socket: /tmp/mysql.sock
