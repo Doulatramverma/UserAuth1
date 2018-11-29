@@ -18,7 +18,7 @@
       <label class="col-sm-1 control-label">Name</label>
       <div class="col-sm-6  inputGroupContainer">
         
-       <%= f.text_field :name, :placeholder=>"Name", :class=>"form-control" %>
+       <%= f.text_field :name, :placeholder=>"Name", :class=>"form-control",required: true %>
       </div>
     </div><br><br><br>
 
@@ -58,7 +58,7 @@
    <div class="form-group">
       <label class="col-sm-1 control-label">Start_date</label>
       <div class="col-sm-3  inputGroupContainer">
-        <%= f.text_field :start_date, :id=>"datetimepicker1",:class=>"form-control" %>
+       <%= f.text_field :start_date, :id=>"datetimepicker1", :class=>"form-control"%>     
       </div>
     </div>
    
@@ -88,15 +88,18 @@ $('#company_country_id').change(function(){
     type: "GET",
     data: {country: country},
   });
-});
-});
+ });
+ });
 </script>
 
-
- <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-            </script>
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#datetimepicker1').datepicker();
+    })
+</script>
 
 

@@ -1,15 +1,35 @@
-development: 
-   adapter: mysql2
-   encoding: utf8 
-   database: db2
-   username: root 
-   password: root 
-production: 
-   adapter: mysql2
-   encoding: utf8 
-   database: db1
-   username: root 
-   password: root 
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: db1_development
+  #pg_restore --verbose --clean --no-acl --no-owner -h localhost -U root -d healthworld44_development ~/Downloads/newpg.dump
+  # The specified database role being used to connect to postgres.
+  # To create additional roles in postgres see `$ createuser --help`.
+  # When left blank, postgres will use the default role. This is
+  # the same name as the operating system user that initialized the database.
+  username: root
+
+  # The password associated with the postgres role (username).
+  password: root
+
+# development: 
+#    adapter: mysql2
+#    encoding: utf8 
+#    database: db
+#    username: root 
+#    password: root 
+# production: 
+#    adapter: mysql2
+#    encoding: utf8 
+#    database: db
+#    username: root 
+#    password: root 
 
 
  

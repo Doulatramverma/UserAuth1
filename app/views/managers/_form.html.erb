@@ -1,119 +1,117 @@
 <div class="container">
-
-<%if @manager.id.present?%>
- <% path = "/managers/#{@manager.id}"%> 
- <% else %> 
- <% path = managers_path%> 
+  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"rel = "stylesheet">
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+ <%if @manager.id.present?%>
+   <% path = "/managers/#{@manager.id}"%> 
+  <% else %> 
+   <% path = managers_path%> 
  <% end %> 
- <%= form_for(@manager, url: path ) do |f| %>
-  <% if manager.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(manager.errors.count, "error") %> prohibited this manager from being saved:</h2>
+  <%= form_for(@manager, url: path ) do |f| %>
+    <% if manager.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(manager.errors.count, "error") %> prohibited this manager from being saved:</h2>
 
-      <ul>
-      <% manager.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% manager.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <label class="col-sm-1 control-label">FirstName</label>
+      <div class="col-sm-3 inputGroupContainer">
+        <%= f.text_field :first_name,:class=>"form-control",required: true %>
+      </div>
     </div>
-  <% end %>
 
-   <div class="form-group">
-    <label class="col-sm-1 control-label">FirstName</label>
-    <div class="col-sm-3 inputGroupContainer">
-      <%= f.text_field :first_name,:class=>"form-control" %>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">LastName</label>
+      <div class="col-sm-3 inputGroupContainer">
+        <%= f.text_field :last_name, :class=>"form-control",required: true %>
+     </div>
     </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-sm-1 control-label">LastName</label>
-    <div class="col-sm-3 inputGroupContainer">
-      <%= f.text_field :last_name, :class=>"form-control" %>
-   </div>
-  </div>
- <div class="form-group">
-    <label class="col-sm-1 control-label">Email</label>
-    <div class="col-sm-3  inputGroupContainer">
-      <%= f.text_field :email, :class=>"form-control" %><br>
-    </div>
-  </div><br><br>
-
-
-      <div class="form-group">
-        <label class="col-sm-1 control-label">Company</label>
-        <div class="col-sm-7  inputGroupContainer">
-           <%=f.select(:company_id, Company.all.collect {|u| [u.name, u.id]},{},:prompt => "Select Company", :class=>"form-control") %>
-       </div>
-       </div>
-
-        <div class="form-group">
-        <label class="col-sm-1 control-label">Monthly</label>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Email</label>
       <div class="col-sm-3  inputGroupContainer">
-       <%= f.text_field :monthly_charge, :class=>"form-control" %><br>
-         </div>
-          </div><br><br>
+        <%= f.text_field :email, :class=>"form-control",required: true %><br>
+      </div>
+    </div><br><br>
 
- <div class="form-group">
-    <label class="col-sm-1 control-label">Role</label>
-    <div class="col-sm-7  inputGroupContainer">
+
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Company</label>
+      <div class="col-sm-7  inputGroupContainer">
+        <%=f.select(:company_id, Company.all.collect {|u| [u.name, u.id]},{},:prompt => "Select Company", :class=>"form-control") %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Monthly</label>
+      <div class="col-sm-3  inputGroupContainer">
+       <%= f.text_field :monthly_charge, :class=>"form-control",required: true %><br>
+      </div>
+    </div><br><br>
+
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Role</label>
+      <div class="col-sm-7  inputGroupContainer">
         <%=f.select(:role_id, UserRole.all.collect {|u| [u.role_name, u.id]},{},:prompt => "Select Role", :class=>"form-control") %>
-    </div>
- </div><br><br>
+      </div>
+    </div><br><br>
 
 
-  <div class="form-group">
-    <label class="col-sm-1 control-label">Start_date</label>
-    <div class="col-sm-2  inputGroupContainer">
-      <%= f.text_field :start_date, :id=>"datetimepicker1",:class=>"form-control" %>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Start_date</label>
+      <div class="col-sm-2  inputGroupContainer">
+        <%= f.text_field :start_date, :id=>"datetimepicker",:class=>"form-control",required: true%>
+      </div>
     </div>
-  </div>
   
-  <div class="form-group">
-        <label class="col-sm-1 control-label">End_date</label>
+    <div class="form-group">
+      <label class="col-sm-1 control-label">End_date</label>
       <div class="col-sm-2  inputGroupContainer">
 
-          <%= f.text_field :end_date, :id=>"datetimepicker2",:class=>"form-control" %>
+       <%= f.text_field :end_date, :id=>"datetimepicker1",:class=>"form-control",required: true %>
 
-           <%#= f.datetime_select :start_date , :placeholder=>"Start_date", :class=>"form-control" %>
-    
-        </div>
+       <%#= f.datetime_select :start_date , :placeholder=>"Start_date", :class=>"form-control" %>
+      </div>
     </div>
    
     <div class="form-group">
-        <label class="col-sm-1 control-label">Active</label>
+     <label class="col-sm-1 control-label">Active</label>
       <div class="col-sm-2  inputGroupContainer">
         
-           <%= f.check_box :active , :class=>"form-control" %>
-        </div>
+       <%= f.check_box :active , :class=>"form-control",required: true %>
+      </div>
     </div><br><br>
   
-  <div class="form-group">
-    <label class="col-sm-5 control-label">Image</label>
-    <div class="col-sm-7  inputGroupContainer">
-     <%= f.file_field :image_id, :onchange => "showimagepreview(this)",:class=>"img_file" %>
-    <img id="imgprvw" style="width: 167px; height: 94px; margin-top: 8px;" /><br>
-  </div>
-  </div><br><br><br><br><br>
-
-   <div class="form-group">
-    <label class="col-sm-1 control-label">Notes</label>
-    <div class="col-sm-11  inputGroupContainer">
-     <%= f.cktext_area :notes, :class=>"form-control" %>
+    <div class="form-group">
+      <label class="col-sm-5 control-label">Image</label>
+      <div class="col-sm-7  inputGroupContainer">
+       <%= f.file_field :image_id, :onchange => "showimagepreview(this)",:class=>"img_file" %>
+      <img id="imgprvw" style="width: 167px; height: 94px; margin-top: 8px;" /><br>
     </div>
-  </div><br><br>
+    </div><br><br><br><br><br>
 
-
-  
-  <div class="form-group">
-        <label class="col-ms-1 control-label"></label>
-        <div class="col-ms-2">
-          <%=f.submit :class=>"btn btn-success" %>
-        </div>
+     <div class="form-group">
+      <label class="col-sm-1 control-label">Notes</label>
+      <div class="col-sm-11  inputGroupContainer">
+       <%= f.cktext_area :notes, :class=>"form-control" %>
       </div>
+    </div><br><br>
 
-     
+
   
-<% end %>
+    <div class="form-group">
+      <label class="col-ms-1 control-label"></label>
+      <div class="col-ms-2">
+        <%=f.submit :class=>"btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <script>
@@ -130,15 +128,15 @@
   }
 </script>
 
+
 <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
+  $(document).ready(function(){
+    $('#datetimepicker').datepicker();
+  })
+</script>
 
-
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker();
-            });
-        </script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#datetimepicker1').datepicker();
+  })
+</script>
