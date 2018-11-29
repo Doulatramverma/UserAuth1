@@ -47,11 +47,11 @@
            <td><%= link_to 'Edit', dit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
            <td><%= link_to 'Destroy', manager_path(manager), method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
 
-           <% elsif  user_check(user, current_user) %>
+          <% elsif  user_check(user, current_user) %>
 
             <td><%= link_to 'Edit',  edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
             <td><%= link_to 'Destroy', manager_path(manager), method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
-           <% elsif user_permission_user(user, current_user)%> 
+          <% elsif user_permission_user(user, current_user)%> 
            <td><%= link_to 'Edit',  edit_manager_manager_path(manager),:class=>"btn btn-warning",:remote => true, 'data-toggle' =>"modal",'data-target' =>'#myModal1' %></td>
           <% end %>
       </tr>
